@@ -199,7 +199,7 @@ export default async function HomePage() {
         </FadeIn>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.slice(0, 6).map((item, index) => (
-            <FadeIn key={item.id || item.title || index} delay={index * 0.05}>
+            <FadeIn key={`${item.title}-${index}`} delay={index * 0.05}>
               <div className="overflow-hidden rounded-[28px] border border-white/40 bg-white/60 shadow-glass">
                 <div className="relative aspect-[4/3] w-full">
                   <Image
