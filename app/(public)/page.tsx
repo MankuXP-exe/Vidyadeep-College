@@ -149,7 +149,7 @@ export default async function HomePage() {
             <div className="mt-8 grid gap-6">
               {reviews.map((review, index) => (
                 <div key={review.studentName + index} className="rounded-[24px] bg-white/70 p-5">
-                  <div className="text-lg font-medium text-slate-900">"{review.quote}"</div>
+                  <div className="text-lg font-medium text-slate-900">&ldquo;{review.quote}&rdquo;</div>
                   <div className="mt-4 text-sm font-semibold text-primary">{review.studentName}</div>
                   <div className="text-sm text-slate-500">{review.course}</div>
                 </div>
