@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 252 40% 98%;
+  --foreground: 222 47% 11%;
+  --border: 240 24% 88%;
+  --input: 240 24% 88%;
+  --ring: 262 48% 35%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply min-h-screen bg-[#eef3ff] bg-hero-glow text-slate-900 antialiased;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.65) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.65) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+section {
+  @apply scroll-mt-28;
+}
+
+img {
+  user-select: none;
+}
