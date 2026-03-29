@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="border-t border-white/20 bg-slate-950 text-white">
       <div className="container grid gap-10 py-14 md:grid-cols-2 xl:grid-cols-4">
         <div className="space-y-4">
-          <h3 className="font-display text-xl">Vidyadeep Paramedical College</h3>
+          <h3 className="font-display text-xl font-bold">Vidyadeep Institute of Paramedical Science</h3>
           <p className="text-sm leading-6 text-slate-300">
             A premium healthcare education campus focused on employability, discipline, and modern clinical learning.
           </p>

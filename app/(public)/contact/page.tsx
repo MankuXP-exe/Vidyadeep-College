@@ -8,20 +8,20 @@ export default function ContactPage() {
     <div className="container py-16 space-y-10">
       <div>
         <Badge>Contact</Badge>
-        <h1 className="mt-4 font-display text-5xl text-slate-950">Reach the admissions and college support team</h1>
+        <h1 className="mt-4 font-display text-5xl text-white">Reach the admissions and college support team</h1>
       </div>
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <Card className="space-y-6 p-8">
           <div>
-            <h2 className="text-xl font-semibold text-slate-950">Address</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{contactDetails.address.join(", ")}</p>
+            <h2 className="text-xl font-semibold text-white">Address</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-300">{contactDetails.address.join(", ")}</p>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-slate-950">Phone</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{contactDetails.phones.join(" / ")}</p>
+            <h2 className="text-xl font-semibold text-white">Phone</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-300">{contactDetails.phones.join(" / ")}</p>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-slate-950">Social</h2>
+            <h2 className="text-xl font-semibold text-white">Social</h2>
             <div className="mt-3 flex flex-col gap-2 text-sm text-primary">
               <Link href={socialLinks.youtube}>YouTube</Link>
               <Link href={socialLinks.instagram}>Instagram</Link>

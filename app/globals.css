@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: 252 40% 98%;
-  --foreground: 222 47% 11%;
-  --border: 240 24% 88%;
-  --input: 240 24% 88%;
-  --ring: 262 48% 35%;
+  --background: 230 50% 15%;
+  --foreground: 0 0% 100%;
+  --border: 230 30% 25%;
+  --input: 230 30% 25%;
+  --ring: 262 48% 65%;
 }
 
 html {
@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  @apply min-h-screen bg-[#eef3ff] bg-hero-glow text-slate-900 antialiased;
+  @apply min-h-screen bg-[#1e2a78] bg-hero-glow text-white antialiased;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
 }
@@ -24,11 +24,11 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.65) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.65) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
   background-size: 96px 96px;
   mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
   pointer-events: none;
-  opacity: 0.25;
+  opacity: 0.5;
 }
 
 section {

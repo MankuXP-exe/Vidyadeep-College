@@ -10,7 +10,7 @@ export default async function FacultyPage() {
     <div className="container py-16 space-y-10">
       <FadeIn>
         <Badge>Faculty</Badge>
-        <h1 className="mt-4 font-display text-5xl text-slate-950">Meet the mentors shaping future healthcare professionals</h1>
+        <h1 className="mt-4 font-display text-5xl text-white">Meet the mentors shaping future healthcare professionals</h1>
       </FadeIn>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {faculty.map((member, index) => (

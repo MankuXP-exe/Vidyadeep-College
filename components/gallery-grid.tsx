@@ -34,8 +34,8 @@ export function GalleryGrid({ items }: { items: any[] }) {
               />
             </div>
             <div className="p-4 text-left">
-              <h3 className="font-medium text-slate-900">{item.title}</h3>
-              <p className="mt-1 text-sm text-slate-600">{item.altText}</p>
+              <h3 className="font-medium text-white">{item.title}</h3>
+              <p className="mt-1 text-sm text-slate-300">{item.altText}</p>
             </div>
           </button>
         ))}

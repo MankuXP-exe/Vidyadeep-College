@@ -23,10 +23,10 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: { DEFAULT: "#4B2E83", foreground: "#F8F9FB" },
-        secondary: { DEFAULT: "#1E88E5", foreground: "#F8F9FB" },
+        primary: { DEFAULT: "#ffffff", foreground: "#1e2a78" },
+        secondary: { DEFAULT: "#38bdf8", foreground: "#1e2a78" },
         accent: { DEFAULT: "#F8F9FB", foreground: "#160F27" },
-        muted: { DEFAULT: "#EEF2FF", foreground: "#475569" },
+        muted: { DEFAULT: "rgba(255,255,255,0.1)", foreground: "#f1f5f9" },
         card: { DEFAULT: "rgba(255,255,255,0.72)", foreground: "#111827" },
       },
       fontFamily: {

@@ -61,8 +61,8 @@ export function AdminCollectionManager({ title, endpoint, fields, items, titleKe
     <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
       <Card className="space-y-5 p-8">
         <div>
-          <h2 className="font-display text-3xl text-slate-950">{editingId ? `Edit ${title}` : `Add ${title}`}</h2>
-          <p className="mt-2 text-sm text-slate-600">Manage live website content securely.</p>
+          <h2 className="font-display text-3xl text-white">{editingId ? `Edit ${title}` : `Add ${title}`}</h2>
+          <p className="mt-2 text-sm text-slate-300">Manage live website content securely.</p>
         </div>
         {fields.map((field) => (
           <div key={field.name} className="space-y-2">
@@ -70,7 +70,7 @@ export function AdminCollectionManager({ title, endpoint, fields, items, titleKe
             {field.type === "textarea" ? (
               <Textarea value={form[field.name] ?? ""} onChange={(event) => updateField(field.name, event.target.value)} />
             ) : field.type === "checkbox" ? (
-              <label className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm text-slate-700">
+              <label className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm text-slate-200">
                 <input type="checkbox" checked={Boolean(form[field.name])} onChange={(event) => updateField(field.name, event.target.checked)} />
                 Enabled
               </label>
@@ -90,8 +90,8 @@ export function AdminCollectionManager({ title, endpoint, fields, items, titleKe
           return (
             <Card key={itemId} className="flex flex-col gap-4 p-6 lg:flex-row lg:items-start lg:justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-slate-950">{item[titleKey]}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{Object.entries(item).filter(([key]) => !["id", titleKey, "createdAt", "updatedAt"].includes(key)).slice(0, 3).map(([key, value]) => `${key}: ${String(value)}`).join(" | ")}</p>
+                <h3 className="text-lg font-semibold text-white">{item[titleKey]}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{Object.entries(item).filter(([key]) => !["id", titleKey, "createdAt", "updatedAt"].includes(key)).slice(0, 3).map(([key, value]) => `${key}: ${String(value)}`).join(" | ")}</p>
               </div>
               <div className="flex gap-3">
                 <Button type="button" variant="outline" onClick={() => { setEditingId(item.id || null); setForm({ ...item }); }}>Edit</Button>

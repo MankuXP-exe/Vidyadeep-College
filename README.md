@@ -1,6 +1,6 @@
-# Vidyadeep Paramedical College
+# Vidyadeep Paramedical Institute
 
-Production-ready Next.js 14 website for Vidyadeep Paramedical College with a premium academic-medical UI, secure admin dashboard, admission form persistence, gallery management, and Vercel-ready deployment structure.
+Production-ready Next.js 14 website for Vidyadeep Paramedical Institute with a premium academic-medical UI, secure admin dashboard, admission form persistence, gallery management, and Vercel-ready deployment structure.
 
 ## Stack
 

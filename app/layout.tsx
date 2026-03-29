@@ -7,10 +7,10 @@ import { Providers } from "@/components/providers";
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const display = Cormorant_Garamond({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600", "700"] });
 
-const siteUrl = "https://vidyadeep-paramedical-college.vercel.app";
-const title = "Vidyadeep Paramedical College | Premium Medical Education in Gurugram";
+const siteUrl = "https://vidyadeep-paramedical-institute.vercel.app";
+const title = "Vidyadeep Paramedical Institute | Premium Medical Education in Gurugram";
 const description =
-  "Vidyadeep Paramedical College offers premium diploma and degree programs in nursing, lab technology, physiotherapy, and allied healthcare with modern facilities and placement support.";
+  "Vidyadeep Paramedical Institute offers premium diploma and degree programs in nursing, lab technology, physiotherapy, and allied healthcare with modern facilities and placement support.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     title,
     description,
     url: siteUrl,
-    siteName: "Vidyadeep Paramedical College",
-    images: [{ url: "/images/logo.png", width: 1200, height: 630, alt: "Vidyadeep Paramedical College" }],
+    siteName: "Vidyadeep Paramedical Institute",
+    images: [{ url: "/images/logo.png", width: 1200, height: 630, alt: "Vidyadeep Paramedical Institute" }],
     locale: "en_IN",
     type: "website",
   },
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollegeOrUniversity",
-    name: "Vidyadeep Paramedical College",
+    name: "Vidyadeep Paramedical Institute",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Near Civil Hospital, Opp Nayara Petrol Pump, Haily Mandi Road, Farrukhnagar",

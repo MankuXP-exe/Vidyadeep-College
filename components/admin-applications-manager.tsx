@@ -36,9 +36,9 @@ export function AdminApplicationsManager({ items }: { items: any[] }) {
       {items.map((item) => (
         <Card key={item.id} className="flex flex-col gap-5 p-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-950">{item.name}</h2>
-            <p className="text-sm text-slate-600">{item.course} | {item.phone} | {item.email}</p>
-            <p className="text-sm leading-6 text-slate-600">{item.message || "No message provided."}</p>
+            <h2 className="text-lg font-semibold text-white">{item.name}</h2>
+            <p className="text-sm text-slate-300">{item.course} | {item.phone} | {item.email}</p>
+            <p className="text-sm leading-6 text-slate-300">{item.message || "No message provided."}</p>
             <p className="text-xs uppercase tracking-[0.22em] text-primary">{item.status} | {formatDate(item.createdAt)}</p>
           </div>
           <div className="flex gap-3">

@@ -60,8 +60,8 @@ export function AdminGalleryManager({ items }: { items: any[] }) {
     <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
       <Card className="space-y-5 p-8">
         <div>
-          <h2 className="font-display text-3xl text-slate-950">Upload Gallery Image</h2>
-          <p className="mt-2 text-sm text-slate-600">Upload to Supabase storage or provide a direct image URL.</p>
+          <h2 className="font-display text-3xl text-white">Upload Gallery Image</h2>
+          <p className="mt-2 text-sm text-slate-300">Upload to Supabase storage or provide a direct image URL.</p>
         </div>
         <div className="space-y-2">
           <Label>Title</Label>
@@ -79,7 +79,7 @@ export function AdminGalleryManager({ items }: { items: any[] }) {
           <Label>Upload File</Label>
           <Input type="file" accept="image/*" onChange={(event) => setFile(event.target.files?.[0] || null)} />
         </div>
-        <label className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm text-slate-700">
+        <label className="flex items-center gap-3 rounded-2xl border border-white/50 bg-white/70 px-4 py-3 text-sm text-slate-200">
           <input type="checkbox" checked={featured} onChange={(event) => setFeatured(event.target.checked)} />
           Feature this image
         </label>
@@ -92,8 +92,8 @@ export function AdminGalleryManager({ items }: { items: any[] }) {
               <Image src={item.imageUrl} alt={item.altText} fill className="object-cover" />
             </div>
             <div>
-              <h3 className="font-semibold text-slate-950">{item.title}</h3>
-              <p className="mt-1 text-sm text-slate-600">{item.altText}</p>
+              <h3 className="font-semibold text-white">{item.title}</h3>
+              <p className="mt-1 text-sm text-slate-300">{item.altText}</p>
             </div>
             <Button type="button" variant="secondary" onClick={() => remove(item.id)}>Delete</Button>
           </Card>

@@ -10,12 +10,12 @@ export function FacultyCard({ member }: { member: any }) {
         </div>
         <div>
           <CardTitle>{member.name}</CardTitle>
-          <p className="mt-1 text-sm font-medium text-primary">{member.designation}</p>
+          <p className="mt-1 text-sm font-medium text-secondary">{member.designation}</p>
         </div>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-slate-600">{member.qualifications}</p>
-        {member.bio ? <p className="mt-3 text-sm leading-6 text-slate-600">{member.bio}</p> : null}
+        <p className="text-sm text-slate-300">{member.qualifications}</p>
+        {member.bio ? <p className="mt-3 text-sm leading-6 text-slate-300">{member.bio}</p> : null}
       </CardContent>
     </Card>
   );

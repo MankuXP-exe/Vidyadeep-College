@@ -9,28 +9,41 @@ export function CourseCard({ course }: { course: any }) {
   const Icon = iconMap[course.icon as keyof typeof iconMap] || iconMap.Users;
 
   return (
-    <Card className="group flex h-full flex-col transition duration-300 hover:-translate-y-2 hover:shadow-glow">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div className="rounded-2xl bg-primary/10 p-3 text-primary">
-            <Icon className="h-6 w-6" />
-          </div>
-          <Badge variant="secondary">{course.category}</Badge>
+    <div className="group relative h-full flex flex-col justify-between p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl space-y-4">
+      <div className="absolute top-4 right-4">
+        <Badge className="bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors">
+          {course.category}
+        </Badge>
+      </div>
+
+      <div className="space-y-4">
+        <div className="inline-flex rounded-xl bg-white/10 p-3 text-white">
+          <Icon className="h-6 w-6" />
         </div>
-        <CardTitle className="pt-4">{course.title}</CardTitle>
-        <CardDescription>{course.shortDesc}</CardDescription>
-      </CardHeader>
-      <CardContent className="mt-auto flex flex-col gap-6 pt-2">
-        <div className="text-sm text-slate-600">
-          <span className="font-semibold text-slate-900">Duration:</span> {course.duration}
+
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold text-white leading-tight">
+            {course.title}
+          </h3>
+          <p className="text-slate-300 text-sm line-clamp-1">
+            {course.shortDesc}
+          </p>
         </div>
-        <Button asChild variant="outline" className="w-full shrink-0 justify-between">
+      </div>
+
+      <div className="pt-4 space-y-4">
+        <div className="flex items-center gap-2 text-sm text-slate-300">
+          <span className="font-semibold text-white">Duration:</span>
+          <span>{course.duration}</span>
+        </div>
+
+        <Button asChild variant="outline" className="w-full justify-between group-hover:bg-white/10 transition-colors">
           <Link href={`/courses/${course.slug}`}>
             View Details
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </Button>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
