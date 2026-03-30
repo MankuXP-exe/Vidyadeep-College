@@ -12,7 +12,7 @@ export default async function FacultyPage() {
         <Badge>Faculty</Badge>
         <h1 className="mt-4 font-display text-5xl text-white">Meet the mentors shaping future healthcare professionals</h1>
       </FadeIn>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-10">
         {faculty.map((member, index) => (
           <FadeIn key={member.slug} delay={index * 0.04}>
             <FacultyCard member={member} />

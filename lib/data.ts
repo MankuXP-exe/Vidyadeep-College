@@ -165,17 +165,17 @@ export const iconMap = {
 };
 
 export const facultyMembers = [
-  ["Dr. Sandeep Singh", "dr-sandeep-singh", "Chairman", "BDS"],
-  ["Dr. Neeraj Khatri", "dr-neeraj-khatri", "Principal", "BDS"],
-  ["Mr. Dhiraj Jha", "mr-dhiraj-jha", "Managing Director", "BA, MA, B.Ed"],
-  ["Ms. Nidhi Gulia", "ms-nidhi-gulia", "Senior Lecturer", "BSc Nursing"],
-  ["Dr. Kuldeep Sheoran", "dr-kuldeep-sheoran", "Homeopathic Wing", "BHMS"],
-].map(([name, slug, designation, qualifications], index) => ({
+  ["Dr. Sandeep Singh", "dr-sandeep-singh", "Chairman", "BDS", "/images/Dr.Sandeep Singh.jpg"],
+  ["Dr. Neeraj Khatri", "dr-neeraj-khatri", "Principal", "BDS", "/images/Dr.Neeraj Khatri.jpg"],
+  ["Mr. Dhiraj Jha", "mr-dhiraj-jha", "Managing Director", "BA, MA, B.Ed", "/images/Mr.Dhiraj Jha.jpg"],
+  ["Ms. Nidhi Gulia", "ms-nidhi-gulia", "Senior Lecturer", "BSc Nursing", "/images/Mrs Nidhi Gulia.jpg"],
+  ["Dr. Kuldeep Sheoran", "dr-kuldeep-sheoran", "Homeopathic Wing", "BHMS", "/images/Dr.Kuldeep Sheoran.jpg"],
+].map(([name, slug, designation, qualifications, image], index) => ({
   name,
   slug,
   designation,
   qualifications,
-  image: "",
+  image,
   sortOrder: index + 1,
 }));
 
@@ -214,6 +214,36 @@ export const gallerySeed = [
     title: "Reception Area",
     imageUrl: "/images/reception-look.webp",
     altText: "Premium reception and welcome layout",
+    featured: true,
+  },
+  {
+    title: "Academic Excellence",
+    imageUrl: "/images/student and teacher photo.jpg",
+    altText: "Students and teachers in a professional academic setting",
+    featured: true,
+  },
+  {
+    title: "Vibrant Student Life",
+    imageUrl: "/images/students.jpg",
+    altText: "A group of students at Vidyadeep Paramedical Institute",
+    featured: true,
+  },
+  {
+    title: "Educational Trips",
+    imageUrl: "/images/movie trip.jpg",
+    altText: "Students during an organized college movie trip",
+    featured: false,
+  },
+  {
+    title: "Cultural Celebrations",
+    imageUrl: "/images/holi celebration.jpg",
+    altText: "Students celebrating the Holi festival on campus",
+    featured: false,
+  },
+  {
+    title: "Vidyadeep Family",
+    imageUrl: "/images/group-photo.jpg",
+    altText: "Group photo of students and faculty at Vidyadeep Paramedical Institute",
     featured: true,
   },
 ];

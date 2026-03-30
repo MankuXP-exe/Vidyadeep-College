@@ -3,13 +3,17 @@ import { Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { FadeIn } from "@/components/fade-in";
-import { getContent } from "@/lib/site";
+import { getContent, getGallery } from "@/lib/site";
 
 export default async function AboutPage() {
-  const content = await getContent("about-page");
+  const [content, gallery] = await Promise.all([
+    getContent("about-page"),
+    getGallery(),
+  ]);
 
   return (
     <div id="gallery" className="max-w-6xl mx-auto px-4 py-16 sm:py-24">
+      {/* ... previous content ... */}
       <FadeIn className="text-center mb-12">
         <Badge>About College</Badge>
         <h1 className="mt-4 font-display text-4xl sm:text-5xl text-white max-w-3xl mx-auto">
@@ -58,49 +62,28 @@ export default async function AboutPage() {
         </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-          {[
-            {
-              title: "Student Group",
-              url: "/images/student and teacher photo.jpg",
-            },
-            {
-              title: "Holi Celebration",
-              url: "/images/holi celebration.jpg",
-            },
-            {
-              title: "Students Outdoor",
-              url: "/images/students.jpg",
-            },
-            {
-              title: "College Infrastructure",
-              url: "/images/hero-image.jpg",
-            },
-            {
-              title: "Activities & Trips",
-              url: "/images/movie trip.jpg",
-            },
-          ].map((item, index) => (
+          {gallery.map((item: any, index: number) => (
             <FadeIn key={index} delay={index * 0.05}>
-              <div className="group relative h-60 w-full overflow-hidden rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-glass transition duration-300 hover:scale-105">
+              <div className="group relative h-64 w-full overflow-hidden rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-glass transition duration-300 hover:scale-105">
                 <Image
-                  src={item.url}
-                  alt={item.title}
+                  src={item.imageUrl}
+                  alt={item.altText || item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="text-sm font-medium text-white px-4 py-2 bg-black/50 rounded-full">{item.title}</span>
+                <div className="absolute inset-0 flex items-end p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="text-sm font-medium text-white px-4 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/10 shadow-lg">{item.title}</span>
                 </div>
               </div>
             </FadeIn>
           ))}
           
           <FadeIn delay={0.3}>
-            <div className="group relative flex h-60 w-full flex-col items-center justify-center overflow-hidden rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-glass transition duration-300 hover:scale-105">
-              <div className="rounded-full bg-white/10 p-4 text-white transition-transform duration-300 group-hover:scale-110">
-                <Play className="h-10 w-10 fill-white" />
+            <div className="group relative flex h-64 w-full flex-col items-center justify-center overflow-hidden rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-glass transition duration-300 hover:scale-105">
+              <div className="rounded-full bg-white/10 p-5 text-white transition-transform duration-300 group-hover:scale-110 shadow-glow">
+                <Play className="h-10 w-10 fill-white ml-1" />
               </div>
               <span className="mt-4 text-sm font-medium text-white">Campus Tour</span>
               <div className="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

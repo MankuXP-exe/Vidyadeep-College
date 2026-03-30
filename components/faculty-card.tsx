@@ -1,22 +1,35 @@
+import Image from "next/image";
 import { UserRound } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function FacultyCard({ member }: { member: any }) {
   return (
-    <Card className="h-full">
-      <CardHeader className="items-start gap-4 sm:flex-row sm:items-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-primary to-secondary text-white shadow-glow">
-          <UserRound className="h-8 w-8" />
-        </div>
-        <div>
-          <CardTitle>{member.name}</CardTitle>
-          <p className="mt-1 text-sm font-medium text-secondary">{member.designation}</p>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm text-slate-300">{member.qualifications}</p>
-        {member.bio ? <p className="mt-3 text-sm leading-6 text-slate-300">{member.bio}</p> : null}
-      </CardContent>
-    </Card>
+    <div className="group flex h-full flex-col items-center rounded-2xl border border-white/20 bg-white/10 p-6 text-center shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+      <div className="relative h-52 w-40 shrink-0 aspect-[3/4] overflow-hidden rounded-lg border border-white/20 bg-white p-2 shadow-md md:h-64 md:w-48">
+        {member.image ? (
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            sizes="(max-width: 768px) 160px, 192px"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-slate-100 text-slate-400">
+            <UserRound className="h-24 w-24" />
+          </div>
+        )}
+      </div>
+      
+      <div className="mt-4 flex flex-1 flex-col items-center gap-1">
+        <h3 className="text-lg font-semibold text-white">{member.name}</h3>
+        <p className="text-sm font-medium text-blue-400">{member.designation}</p>
+        <p className="text-sm text-gray-300">{member.qualifications}</p>
+        {member.bio ? (
+          <p className="mt-2 text-xs leading-relaxed text-slate-400 line-clamp-3">
+            {member.bio}
+          </p>
+        ) : null}
+      </div>
+    </div>
   );
 }
