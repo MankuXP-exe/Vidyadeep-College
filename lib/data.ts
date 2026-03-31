@@ -167,7 +167,7 @@ export const iconMap = {
 export const facultyMembers = [
   ["Dr. Sandeep Singh", "dr-sandeep-singh", "Chairman", "BDS", "/images/Dr.Sandeep Singh.jpg"],
   ["Dr. Neeraj Khatri", "dr-neeraj-khatri", "Principal", "BDS", "/images/Dr.Neeraj Khatri.jpg"],
-  ["Mr. Dhiraj Jha", "mr-dhiraj-jha", "Managing Director", "BA, MA, B.Ed", "/images/Mr.Dhiraj Jha.jpg"],
+  ["Mr. Dhiraj Jha", "mr-dhiraj-jha", "Managing Director", "BA, MA, B.Ed", "/images/Mr Dhiraj jha (2).jpg"],
   ["Ms. Nidhi Gulia", "ms-nidhi-gulia", "Senior Lecturer", "BSc Nursing", "/images/Mrs Nidhi Gulia.jpg"],
   ["Dr. Kuldeep Sheoran", "dr-kuldeep-sheoran", "Homeopathic Wing", "BHMS", "/images/Dr.Kuldeep Sheoran.jpg"],
 ].map(([name, slug, designation, qualifications, image], index) => ({
