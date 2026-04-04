@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCourse, getCourses } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const courses = await getCourses();
   return courses.map((course) => ({ slug: course.slug }));
