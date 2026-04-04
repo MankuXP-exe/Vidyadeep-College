@@ -23,6 +23,18 @@ const courseFields = [
 
 const emptyForm = Object.fromEntries(courseFields.map((f) => [f.name, f.type === "checkbox" ? false : ""]));
 
+function slugify(text: string) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/[^\w-]+/g, "") // Remove all non-word chars
+    .replace(/--+/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, ""); // Trim - from end of text
+}
+
 export function CoursesClient({ courses: initialCourses }: { courses: any[] }) {
   const [coursesList, setCoursesList] = useState(initialCourses);
   const { theme } = useAdminTheme();
@@ -181,7 +193,16 @@ export function CoursesClient({ courses: initialCourses }: { courses: any[] }) {
         description="Course details will auto-sync with the public website."
         fields={courseFields}
         values={form}
-        onChange={(name, value) => setForm((prev: any) => ({ ...prev, [name]: value }))}
+        onChange={(name, value) => {
+          setForm((prev: any) => {
+            const updates: any = { ...prev, [name]: value };
+            // Auto-slugify if changing title and slug was empty or previously auto-generated
+            if (name === "title" && (!prev.slug || prev.slug === slugify(prev.title))) {
+              updates.slug = slugify(value);
+            }
+            return updates;
+          });
+        }}
         onSubmit={handleSubmit}
         loading={loading}
         submitLabel={editId ? "Update Course" : "Create Course"}

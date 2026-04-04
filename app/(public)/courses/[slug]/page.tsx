@@ -6,11 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getCourse, getCourses } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
-
-export async function generateStaticParams() {
-  const courses = await getCourses();
-  return courses.map((course) => ({ slug: course.slug }));
-}
+export const dynamicParams = true;
 
 export default async function CourseDetailPage({ params }: { params: { slug: string } }) {
   const course = await getCourse(params.slug);
