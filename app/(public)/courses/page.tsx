@@ -3,6 +3,8 @@ import { FadeIn } from "@/components/fade-in";
 import { CourseCard } from "@/components/course-card";
 import { getCourses } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export default async function CoursesPage() {
   const courses = await getCourses();
 

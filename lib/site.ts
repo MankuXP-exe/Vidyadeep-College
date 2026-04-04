@@ -30,12 +30,18 @@ async function safeDbQuery<T>(query: () => Promise<T>, fallback: T) {
 }
 
 export async function getCourses() {
+  const isConfigured = hasConfiguredDatabase();
   const courses = await safeDbQuery(
     () => prisma.course.findMany({ orderBy: [{ featured: "desc" }, { title: "asc" }] }),
     [],
   );
 
-  return courses.length ? courses : defaultCourses;
+  // Fallback to seed data ONLY if no database is connected at all
+  if (!isConfigured && (!courses || courses.length === 0)) {
+    return defaultCourses;
+  }
+
+  return courses;
 }
 
 export async function getCourse(slug: string) {
@@ -45,30 +51,45 @@ export async function getCourse(slug: string) {
 }
 
 export async function getFaculty() {
+  const isConfigured = hasConfiguredDatabase();
   const members = await safeDbQuery(
     () => prisma.facultyMember.findMany({ orderBy: { sortOrder: "asc" } }),
     [],
   );
 
-  return members.length ? members : facultyMembers;
+  if (!isConfigured && (!members || members.length === 0)) {
+    return facultyMembers;
+  }
+
+  return members;
 }
 
 export async function getGallery() {
+  const isConfigured = hasConfiguredDatabase();
   const images = await safeDbQuery(
     () => prisma.galleryImage.findMany({ orderBy: { createdAt: "desc" } }),
     [],
   );
 
-  return images.length ? images : gallerySeed;
+  if (!isConfigured && (!images || images.length === 0)) {
+    return gallerySeed;
+  }
+
+  return images;
 }
 
 export async function getTestimonials() {
+  const isConfigured = hasConfiguredDatabase();
   const items = await safeDbQuery(
     () => prisma.testimonial.findMany({ where: { featured: true }, orderBy: { updatedAt: "desc" } }),
     [],
   );
 
-  return items.length ? items : testimonials;
+  if (!isConfigured && (!items || items.length === 0)) {
+    return testimonials;
+  }
+
+  return items;
 }
 
 export async function getContent(section: string) {
