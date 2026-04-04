@@ -7,8 +7,6 @@ import {
   testimonials,
 } from "@/lib/data";
 
-let databaseAvailable: boolean | null = null;
-
 function hasConfiguredDatabase() {
   const url = process.env.DATABASE_URL;
 
@@ -22,16 +20,11 @@ async function safeDbQuery<T>(query: () => Promise<T>, fallback: T) {
     return fallback;
   }
 
-  if (databaseAvailable === false) {
-    return fallback;
-  }
-
   try {
     const result = await query();
-    databaseAvailable = true;
     return result;
-  } catch {
-    databaseAvailable = false;
+  } catch (err) {
+    console.error("Database query failed:", err);
     return fallback;
   }
 }
