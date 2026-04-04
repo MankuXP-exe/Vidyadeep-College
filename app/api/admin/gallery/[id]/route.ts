@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { apiError, requireAdmin } from "@/lib/api";
 
@@ -14,6 +15,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: { id: 
       } catch { /* ignore cloudinary errors */ }
     }
     await prisma.galleryImage.delete({ where: { id: params.id } });
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true });
   } catch {
     return apiError("Database is currently unavailable.", 503);

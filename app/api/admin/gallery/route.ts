@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { randomUUID } from "crypto";
 import { prisma } from "@/lib/prisma";
 import { createSupabaseAdmin } from "@/lib/supabase";
@@ -76,6 +77,7 @@ export async function POST(request: NextRequest) {
     const createData: any = { title, altText, imageUrl, featured, category };
     if (cloudinaryId) createData.cloudinaryId = cloudinaryId;
     const item = await prisma.galleryImage.create({ data: createData });
+    revalidatePath("/", "layout");
     return NextResponse.json(item);
   } catch (err) {
     console.error("DB save failed, returning uploaded URL:", err);

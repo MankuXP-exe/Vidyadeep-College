@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { apiError, requireAdmin, sameOrigin } from "@/lib/api";
 import { courseSchema } from "@/lib/validations";
@@ -14,6 +15,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   }
   try {
     const item = await prisma.course.update({ where: { id: params.id }, data: parsed.data });
+    revalidatePath("/", "layout");
     return NextResponse.json(item);
   } catch {
     return apiError("Database is currently unavailable.", 503);
@@ -24,6 +26,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: { id: 
   try { await requireAdmin(); } catch { return apiError("Unauthorized.", 401); }
   try {
     await prisma.course.delete({ where: { id: params.id } });
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true });
   } catch {
     return apiError("Database is currently unavailable.", 503);

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { apiError, requireAdmin, sameOrigin } from "@/lib/api";
 import { courseSchema } from "@/lib/validations";
@@ -24,6 +25,7 @@ export async function POST(request: NextRequest) {
   }
   try {
     const item = await prisma.course.create({ data: parsed.data });
+    revalidatePath("/", "layout");
     return NextResponse.json(item);
   } catch (err) {
     return apiError("Database is currently unavailable. Please try again later.", 503);
