@@ -36,6 +36,39 @@ export function GalleryClient({ items: initialItems }: { items: any[] }) {
 
   const filtered = tab === "all" ? galleryItems : galleryItems.filter((i: any) => (i.category || "image") === tab);
 
+  async function compressImage(file: File): Promise<File> {
+    if (!file.type.startsWith("image/")) return file;
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = document.createElement("img");
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const MAX_WIDTH = 1920;
+          const MAX_HEIGHT = 1080;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+          } else {
+            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx?.drawImage(img, 0, 0, width, height);
+          canvas.toBlob((blob) => {
+            if (blob) resolve(new File([blob], file.name, { type: file.type }));
+            else resolve(file);
+          }, file.type, 0.85);
+        };
+        img.src = event.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   async function handleUpload() {
     if (!title) {
       toast.error("Title is required");
@@ -49,19 +82,35 @@ export function GalleryClient({ items: initialItems }: { items: any[] }) {
       formData.append("imageUrl", imageUrl);
       formData.append("featured", String(featured));
       formData.append("category", category);
-      if (file) formData.append("file", file);
+      if (file) {
+        toast.loading("Compressing & Uploading...", { id: "upload-toast" }); // Better mobile UX to denote background delay
+        let uploadFile = file;
+        if (file.type.startsWith("image/")) {
+          uploadFile = await compressImage(file);
+        }
+        formData.append("file", uploadFile);
+      } else {
+        toast.loading("Uploading...", { id: "upload-toast" });
+      }
 
       const res = await fetch("/api/admin/gallery", { method: "POST", body: formData });
-      const data = await res.json().catch(() => null);
-      if (!res.ok) {
-        throw new Error(data?.error || "Upload failed");
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        throw new Error(`Server returned HTTP ${res.status}. File may be too large to process.`);
       }
-      toast.success("Gallery item added!");
+
+      if (!res.ok) {
+        throw new Error(data?.error || `Upload failed (${res.status})`);
+      }
+      toast.success("Gallery item added!", { id: "upload-toast" });
       setShowUpload(false);
       resetForm();
       if (data) setGalleryItems((prev) => [data, ...prev]);
     } catch (err: any) {
-      toast.error(err.message || "Upload failed");
+      console.error(err);
+      toast.error(err.message || "Upload failed", { id: "upload-toast" });
     } finally {
       setLoading(false);
     }
