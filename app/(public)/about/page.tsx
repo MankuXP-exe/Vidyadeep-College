@@ -1,9 +1,15 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import { Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { FadeIn } from "@/components/fade-in";
 import { getContent, getGallery } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "About Our Institute | Vision, Mission & Healthcare History",
+  description: "Learn about the legacy of Vidyadeep Paramedical Institute, our mission to transform rural healthcare, and our vision for academic excellence in Haryana.",
+};
 
 export default async function AboutPage() {
   const [content, gallery] = await Promise.all([

@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/fade-in";
 import { CourseCard } from "@/components/course-card";
 import { getCourses } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Paramedical Courses & Nursing Degrees | ANM, GNM, MLT, BPT",
+  description: "Browse our comprehensive diploma and degree programs in nursing, pharmacy, and medical technology. 100% placement support in top hospitals.",
+};
 
 export const dynamic = "force-dynamic";
 
