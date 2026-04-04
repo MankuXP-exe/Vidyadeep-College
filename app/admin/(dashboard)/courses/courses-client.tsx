@@ -17,7 +17,6 @@ const courseFields = [
   { name: "eligibility", label: "Eligibility", placeholder: "e.g., 10+2 Science" },
   { name: "duration", label: "Duration", placeholder: "e.g., 2 Years" },
   { name: "careers", label: "Career Opportunities", type: "textarea" as const },
-  { name: "icon", label: "Icon Name", placeholder: "e.g., Microscope" },
   { name: "featured", label: "Featured", type: "checkbox" as const },
 ];
 

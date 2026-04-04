@@ -17,7 +17,7 @@ export const courseSchema = z.object({
   eligibility: z.string().min(2).max(300),
   duration: z.string().min(2).max(120),
   careers: z.string().min(2).max(2000),
-  icon: z.string().min(2).max(60),
+  icon: z.string().min(2).max(60).optional().default("BookOpen"),
   featured: z.boolean().optional().default(false),
 });
 
