@@ -41,7 +41,7 @@ const menuGroups = [
   },
 ];
 
-export function AdminSidebar() {
+export function AdminSidebar({ mobileOpen, setMobileOpen }: { mobileOpen?: boolean; setMobileOpen?: (v: boolean) => void }) {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
   const { data: session } = useSession();
@@ -53,7 +53,8 @@ export function AdminSidebar() {
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
       className={`
         fixed left-0 top-0 z-40 flex h-screen flex-col
-        border-r
+        border-r transition-transform duration-300
+        ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         ${theme === "dark"
           ? "border-white/[0.06] bg-[#0c1427]"
           : "border-slate-200 bg-white"
@@ -111,6 +112,7 @@ export function AdminSidebar() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setMobileOpen?.(false)}
                     title={collapsed ? item.label : undefined}
                     className={`
                       group relative flex items-center gap-3 rounded-xl px-3 py-2.5
@@ -158,8 +160,8 @@ export function AdminSidebar() {
         ))}
       </nav>
 
-      {/* Collapse toggle */}
-      <div className="border-t border-inherit px-3 py-2">
+      {/* Collapse toggle (Desktop Only) */}
+      <div className="border-t border-inherit px-3 py-2 hidden lg:block">
         <button
           onClick={() => setCollapsed(!collapsed)}
           className={`flex w-full items-center justify-center rounded-xl p-2.5 transition-colors ${

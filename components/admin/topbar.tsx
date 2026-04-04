@@ -12,9 +12,10 @@ import {
   LogOut,
   User,
   Settings,
+  Menu,
 } from "lucide-react";
 
-export function AdminTopbar() {
+export function AdminTopbar({ onMenuClick }: { onMenuClick?: () => void }) {
   const { theme, toggleTheme } = useAdminTheme();
   const { data: session } = useSession();
   const [showProfile, setShowProfile] = useState(false);
@@ -31,8 +32,18 @@ export function AdminTopbar() {
         }
       `}
     >
+      {/* Mobile Menu Button */}
+      <button 
+        onClick={onMenuClick}
+        className={`lg:hidden flex items-center justify-center h-10 w-10 rounded-xl transition-colors ${
+          theme === "dark" ? "text-slate-400 hover:bg-white/[0.06]" : "text-slate-500 hover:bg-slate-100"
+        }`}
+      >
+        <Menu className="h-5 w-5" />
+      </button>
+
       {/* Search */}
-      <div className="relative flex-1 max-w-md">
+      <div className="relative flex-1 max-w-md hidden sm:block">
         <Search className={`absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 ${
           theme === "dark" ? "text-slate-500" : "text-slate-400"
         }`} />
