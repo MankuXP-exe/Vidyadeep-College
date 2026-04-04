@@ -4,7 +4,10 @@ import { apiError, requireAdmin } from "@/lib/api";
 
 export async function GET() {
   try { await requireAdmin(); } catch { return apiError("Unauthorized.", 401); }
-  const items = await prisma.application.findMany({ orderBy: { createdAt: "desc" } });
-  return NextResponse.json(items);
+  try {
+    const items = await prisma.application.findMany({ orderBy: { createdAt: "desc" } });
+    return NextResponse.json(items);
+  } catch {
+    return NextResponse.json([]);
+  }
 }
-

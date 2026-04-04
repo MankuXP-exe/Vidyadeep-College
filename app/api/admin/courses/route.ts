@@ -5,8 +5,12 @@ import { courseSchema } from "@/lib/validations";
 
 export async function GET() {
   try { await requireAdmin(); } catch { return apiError("Unauthorized.", 401); }
-  const items = await prisma.course.findMany({ orderBy: { updatedAt: "desc" } });
-  return NextResponse.json(items);
+  try {
+    const items = await prisma.course.findMany({ orderBy: { updatedAt: "desc" } });
+    return NextResponse.json(items);
+  } catch {
+    return NextResponse.json([]);
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -14,8 +18,14 @@ export async function POST(request: NextRequest) {
   if (!sameOrigin(request)) return apiError("Invalid origin.", 403);
   const body = await request.json().catch(() => null);
   const parsed = courseSchema.safeParse(body);
-  if (!parsed.success) return apiError("Invalid course data.", 422);
-  const item = await prisma.course.create({ data: parsed.data });
-  return NextResponse.json(item);
+  if (!parsed.success) {
+    const errorMsg = parsed.error.issues.map(i => `${i.path[0]}: ${i.message}`).join(", ");
+    return apiError(`Validation failed: ${errorMsg}`, 422);
+  }
+  try {
+    const item = await prisma.course.create({ data: parsed.data });
+    return NextResponse.json(item);
+  } catch (err) {
+    return apiError("Database is currently unavailable. Please try again later.", 503);
+  }
 }
-

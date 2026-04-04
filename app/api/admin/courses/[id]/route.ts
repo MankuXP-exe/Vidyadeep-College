@@ -8,14 +8,24 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   if (!sameOrigin(request)) return apiError("Invalid origin.", 403);
   const body = await request.json().catch(() => null);
   const parsed = courseSchema.safeParse(body);
-  if (!parsed.success) return apiError("Invalid course data.", 422);
-  const item = await prisma.course.update({ where: { id: params.id }, data: parsed.data });
-  return NextResponse.json(item);
+  if (!parsed.success) {
+    const errorMsg = parsed.error.issues.map(i => `${i.path[0]}: ${i.message}`).join(", ");
+    return apiError(`Validation failed: ${errorMsg}`, 422);
+  }
+  try {
+    const item = await prisma.course.update({ where: { id: params.id }, data: parsed.data });
+    return NextResponse.json(item);
+  } catch {
+    return apiError("Database is currently unavailable.", 503);
+  }
 }
 
 export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
   try { await requireAdmin(); } catch { return apiError("Unauthorized.", 401); }
-  await prisma.course.delete({ where: { id: params.id } });
-  return NextResponse.json({ success: true });
+  try {
+    await prisma.course.delete({ where: { id: params.id } });
+    return NextResponse.json({ success: true });
+  } catch {
+    return apiError("Database is currently unavailable.", 503);
+  }
 }
-

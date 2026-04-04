@@ -38,3 +38,68 @@ section {
 img {
   user-select: none;
 }
+
+/* ==============================
+   ADMIN DASHBOARD STYLES
+   ============================== */
+
+/* Reset public site styles for admin routes */
+[data-admin-theme] body,
+[data-admin-theme="dark"] ~ body,
+.admin-layout-root {
+  background: none;
+  background-image: none;
+}
+
+[data-admin-theme] body::before,
+.admin-layout-root::before {
+  display: none;
+}
+
+/* Admin Dark Theme */
+[data-admin-theme="dark"] {
+  --admin-bg: #0f1729;
+  --admin-surface: #141b2d;
+  --admin-border: rgba(255, 255, 255, 0.06);
+  --admin-text: #f8fafc;
+  --admin-text-secondary: #94a3b8;
+  --admin-text-muted: #64748b;
+}
+
+/* Admin Light Theme */
+[data-admin-theme="light"] {
+  --admin-bg: #f1f5f9;
+  --admin-surface: #ffffff;
+  --admin-border: #e2e8f0;
+  --admin-text: #0f172a;
+  --admin-text-secondary: #475569;
+  --admin-text-muted: #94a3b8;
+}
+
+/* Custom scrollbar for admin */
+[data-admin-theme] .scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+[data-admin-theme] .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Admin pulse animation */
+@keyframes admin-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.05) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

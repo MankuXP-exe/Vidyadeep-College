@@ -7,9 +7,11 @@ export default withAuth(
   {
     callbacks: {
       authorized: ({ req, token }) => {
+        // Allow login page access
         if (req.nextUrl.pathname === "/admin") {
           return true;
         }
+        // Protect all admin sub-routes
         if (req.nextUrl.pathname.startsWith("/admin")) {
           return token?.role === "ADMIN";
         }
